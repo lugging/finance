@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mimik.finance.mapper.UserAcctListMapper">
+	<resultMap id="BaseResultMap" type="cn.mimik.finance.domain.UserAcctListPo">
+		<id column="id" property="id" />
+		<result column="txn_date" property="txnDate" />
+		<result column="txn_time" property="txnTime" />
+		<result column="txn_type" property="txnType" />
+		<result column="cust_no" property="custNo" />
+		<result column="txn_amt" property="txnAmt" />
+		<result column="txn_addr" property="txnAddr" />
+		<result column="memo" property="memo" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		t_user_acct_list
+	</sql>
+
+	<sql id="Base_Column">
+		txn_date,
+		txn_time,
+		txn_type,
+		cust_no,
+		txn_amt,
+		txn_addr,
+		memo
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="txnDate != null">
+			txn_date= #{txnDate}
+	           AND 
+		</if>
+		<if test="txnTime != null">
+			txn_time= #{txnTime}
+	           AND 
+		</if>
+		<if test="txnType != null">
+			txn_type= #{txnType}
+	           AND 
+		</if>
+		<if test="custNo != null">
+			cust_no= #{custNo}
+	           AND 
+		</if>
+		<if test="txnAmt != null">
+			txn_amt= #{txnAmt}
+	           AND 
+		</if>
+		<if test="txnAddr != null">
+			txn_addr= #{txnAddr}
+	           AND 
+		</if>
+		<if test="memo != null">
+			memo= #{memo}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="txnDate != null">
+		txn_date,
+	</if>
+	<if test="txnTime != null">
+		txn_time,
+	</if>
+	<if test="txnType != null">
+		txn_type,
+	</if>
+	<if test="custNo != null">
+		cust_no,
+	</if>
+	<if test="txnAmt != null">
+		txn_amt,
+	</if>
+	<if test="txnAddr != null">
+		txn_addr,
+	</if>
+	<if test="memo != null">
+		memo,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="txnDate != null">
+		#{txnDate},
+	</if>
+	<if test="txnTime != null">
+		#{txnTime},
+	</if>
+	<if test="txnType != null">
+		#{txnType},
+	</if>
+	<if test="custNo != null">
+		#{custNo},
+	</if>
+	<if test="txnAmt != null">
+		#{txnAmt},
+	</if>
+	<if test="txnAddr != null">
+		#{txnAddr},
+	</if>
+	<if test="memo != null">
+		#{memo},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="txnDate != null">
+		txn_date=#{txnDate},
+	</if>
+	<if test="txnTime != null">
+		txn_time=#{txnTime},
+	</if>
+	<if test="txnType != null">
+		txn_type=#{txnType},
+	</if>
+	<if test="custNo != null">
+		cust_no=#{custNo},
+	</if>
+	<if test="txnAmt != null">
+		txn_amt=#{txnAmt},
+	</if>
+	<if test="txnAddr != null">
+		txn_addr=#{txnAddr},
+	</if>
+	<if test="memo != null">
+		memo=#{memo},
+	</if>
+		</set>
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.txnDate != null">
+                    txn_date=#{s.txnDate},
+			</if>
+			<if test="s.txnTime != null">
+                    txn_time=#{s.txnTime},
+			</if>
+			<if test="s.txnType != null">
+                    txn_type=#{s.txnType},
+			</if>
+			<if test="s.custNo != null">
+                    cust_no=#{s.custNo},
+			</if>
+			<if test="s.txnAmt != null">
+                    txn_amt=#{s.txnAmt},
+			</if>
+			<if test="s.txnAddr != null">
+                    txn_addr=#{s.txnAddr},
+			</if>
+			<if test="s.memo != null">
+                    memo=#{s.memo}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.txnDate != null">
+                    txn_date=#{w.txnDate}
+                   AND 
+ 			</if>
+			<if test="w.txnTime != null">
+                    txn_time=#{w.txnTime}
+                   AND 
+ 			</if>
+			<if test="w.txnType != null">
+                    txn_type=#{w.txnType}
+                   AND 
+ 			</if>
+			<if test="w.custNo != null">
+                    cust_no=#{w.custNo}
+                   AND 
+ 			</if>
+			<if test="w.txnAmt != null">
+                    txn_amt=#{w.txnAmt}
+                   AND 
+ 			</if>
+			<if test="w.txnAddr != null">
+                    txn_addr=#{w.txnAddr}
+                   AND 
+ 			</if>
+			<if test="w.memo != null">
+                    memo=#{w.memo}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

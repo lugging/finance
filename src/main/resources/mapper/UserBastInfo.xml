@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mimik.finance.mapper.UserBastInfoMapper">
+	<resultMap id="BaseResultMap" type="cn.mimik.finance.domain.UserBastInfoPo">
+		<id column="id" property="id" />
+		<result column="cust_no" property="custNo" />
+		<result column="cust_name" property="custName" />
+		<result column="sex_flag" property="sexFlag" />
+		<result column="email" property="email" />
+		<result column="birthday" property="birthday" />
+		<result column="mobile" property="mobile" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		t_user_bast_info
+	</sql>
+
+	<sql id="Base_Column">
+		cust_no,
+		cust_name,
+		sex_flag,
+		email,
+		birthday,
+		mobile
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="custNo != null">
+			cust_no= #{custNo}
+	           AND 
+		</if>
+		<if test="custName != null">
+			cust_name= #{custName}
+	           AND 
+		</if>
+		<if test="sexFlag != null">
+			sex_flag= #{sexFlag}
+	           AND 
+		</if>
+		<if test="email != null">
+			email= #{email}
+	           AND 
+		</if>
+		<if test="birthday != null">
+			birthday= #{birthday}
+	           AND 
+		</if>
+		<if test="mobile != null">
+			mobile= #{mobile}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="custNo != null">
+		cust_no,
+	</if>
+	<if test="custName != null">
+		cust_name,
+	</if>
+	<if test="sexFlag != null">
+		sex_flag,
+	</if>
+	<if test="email != null">
+		email,
+	</if>
+	<if test="birthday != null">
+		birthday,
+	</if>
+	<if test="mobile != null">
+		mobile,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="custNo != null">
+		#{custNo},
+	</if>
+	<if test="custName != null">
+		#{custName},
+	</if>
+	<if test="sexFlag != null">
+		#{sexFlag},
+	</if>
+	<if test="email != null">
+		#{email},
+	</if>
+	<if test="birthday != null">
+		#{birthday},
+	</if>
+	<if test="mobile != null">
+		#{mobile},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="custName != null">
+		cust_name=#{custName},
+	</if>
+	<if test="sexFlag != null">
+		sex_flag=#{sexFlag},
+	</if>
+	<if test="email != null">
+		email=#{email},
+	</if>
+	<if test="birthday != null">
+		birthday=#{birthday},
+	</if>
+	<if test="mobile != null">
+		mobile=#{mobile},
+	</if>
+		</set>
+		<where>
+			<if test="custNo != null">
+				cust_no= #{custNo}
+			</if>
+		</where>
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.custNo != null">
+                    cust_no=#{s.custNo},
+			</if>
+			<if test="s.custName != null">
+                    cust_name=#{s.custName},
+			</if>
+			<if test="s.sexFlag != null">
+                    sex_flag=#{s.sexFlag},
+			</if>
+			<if test="s.email != null">
+                    email=#{s.email},
+			</if>
+			<if test="s.birthday != null">
+                    birthday=#{s.birthday},
+			</if>
+			<if test="s.mobile != null">
+                    mobile=#{s.mobile}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.custNo != null">
+                    cust_no=#{w.custNo}
+                   AND 
+ 			</if>
+			<if test="w.custName != null">
+                    cust_name=#{w.custName}
+                   AND 
+ 			</if>
+			<if test="w.sexFlag != null">
+                    sex_flag=#{w.sexFlag}
+                   AND 
+ 			</if>
+			<if test="w.email != null">
+                    email=#{w.email}
+                   AND 
+ 			</if>
+			<if test="w.birthday != null">
+                    birthday=#{w.birthday}
+                   AND 
+ 			</if>
+			<if test="w.mobile != null">
+                    mobile=#{w.mobile}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

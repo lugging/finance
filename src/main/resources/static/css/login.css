@@ -1,0 +1,36 @@
+body {
+  margin: 0 auto;
+  background-attachment: fixed;
+  overflow: hidden;
+  font-family: 'Wire One', sans-serif;
+  
+      line-height: normal;
+      text-align: center;
+	  background:url(/images/bg1.jpg) no-repeat;
+	  background-size: 100%;
+    }
+.login-div {
+	background-color:#01647c;
+	width: 350px;
+	padding: 20px 0;
+	margin: 0 auto;
+	border-radius: 50px;
+	box-sizing: border-box;
+	margin-top: 10%;
+	color: #fbfbfb;
+}
+#logo {
+	width :100px;
+	margin-bottom: 30px;
+}
+.btn{
+	font-weight:bold;
+}
+.login-btn{
+	background:#7d9ab8 ;
+	color: #fff;
+}
+.login-input{
+	color: #333;
+	background: #eff3f6;
+}

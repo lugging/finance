@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mimik.finance.mapper.UserLoginInfoMapper">
+	<resultMap id="BaseResultMap" type="cn.mimik.finance.domain.UserLoginInfoPo">
+		<id column="id" property="id" />
+		<result column="cust_no" property="custNo" />
+		<result column="login_name" property="loginName" />
+		<result column="pwd" property="pwd" />
+		<result column="regist_date" property="registDate" />
+		<result column="memo" property="memo" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		t_user_login_info
+	</sql>
+
+	<sql id="Base_Column">
+		cust_no,
+		pwd,
+		login_name,
+		regist_date,
+		memo
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="custNo != null">
+			cust_no= #{custNo}
+	           AND 
+		</if>
+		<if test="pwd != null">
+			pwd= #{pwd}
+	           AND 
+		</if>
+		<if test="loginName != null">
+			login_name= #{loginName}
+			AND
+		</if>
+		<if test="registDate != null">
+			regist_date= #{registDate}
+	           AND 
+		</if>
+		<if test="memo != null">
+			memo= #{memo}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="custNo != null">
+		cust_no,
+	</if>
+	<if test="pwd != null">
+		pwd,
+	</if>
+	<if test="loginName != null">
+		login_name,
+	</if>
+	<if test="registDate != null">
+		regist_date,
+	</if>
+	<if test="memo != null">
+		memo,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="custNo != null">
+		#{custNo},
+	</if>
+	<if test="pwd != null">
+		#{pwd},
+	</if>
+	<if test="loginName != null">
+		#{loginName},
+	</if>
+	<if test="registDate != null">
+		#{registDate},
+	</if>
+	<if test="memo != null">
+		#{memo},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="pwd != null">
+		pwd=#{pwd},
+	</if>
+	<if test="registDate != null">
+		regist_date=#{registDate},
+	</if>
+	<if test="memo != null">
+		memo=#{memo},
+	</if>
+		</set>
+		<where>
+			<if test="custNo != null">
+				cust_no= #{custNo}
+			</if>
+		</where>
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.custNo != null">
+                    cust_no=#{s.custNo},
+			</if>
+			<if test="s.pwd != null">
+                    pwd=#{s.pwd},
+			</if>
+			<if test="s.registDate != null">
+                    regist_date=#{s.registDate},
+			</if>
+			<if test="s.memo != null">
+                    memo=#{s.memo}
+			</if>
+		</set>
+		<where>
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.custNo != null">
+                    cust_no=#{w.custNo}
+                   AND
+ 			</if>
+			<if test="w.pwd != null">
+                    pwd=#{w.pwd}
+                   AND
+ 			</if>
+			<if test="w.registDate != null">
+                    regist_date=#{w.registDate}
+                   AND
+ 			</if>
+			<if test="w.memo != null">
+                    memo=#{w.memo}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

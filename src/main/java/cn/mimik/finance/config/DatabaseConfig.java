@@ -7,6 +7,7 @@ import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -36,6 +37,7 @@ public class DatabaseConfig implements EnvironmentAware {
 
     //我们只需要配置一个数据源即可，mybatis-spring-boot-starter会自动帮我们创建SqlSessionFactory和SqlSessionTemplate
     @Bean(name="dataSource", destroyMethod = "close", initMethod="init")
+    @Primary
     public DataSource druidDataSource(){
         DruidDataSource dataSource=new DruidDataSource();
         dataSource.setUsername(username);

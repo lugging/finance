@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<meta name="keywords" content=" ">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<title>个人理财系统</title>
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script>
+			$(function() {
+				$(".meun-item").click(function() {
+					$(".meun-item").removeClass("meun-item-active");
+					$(this).addClass("meun-item-active");
+				});
+
+				$("#sysmem,#mem,#number,#version").click(function() {
+						$(this).children("span").toggleClass("glyphicon-menu-down");
+					})
+				$("[id^='bigimg']").click(function(){
+					$("#bigimg img").attr("src",$(this).attr("src"))
+				})
+			})
+		</script>
+		<!--[if lt IE 9]>
+          <script src="js/html5shiv.min.js"></script>
+        <![endif]-->
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="/css/slide.css" />
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+	</head>
+
+	<body>
+		<div id="wrap">	
+			<!-- 左侧菜单栏目块 -->
+			<div class="topMeun">
+				<span class="right-span"> <span style="margin: 0 5px;"><img src="/images/wuchao.jpg"/></span>&nbsp;&nbsp;&nbsp;<span style="margin: 0 5px;" th:text="${name}"></span></span>
+			</div>
+			<div class="leftMeun" id="leftMeun">
+				<img src="/images/logo.png" />
+				<div class="meun-title"  data-toggle="collapse" data-parent="#accordion" href="#system" aria-expanded="true" aria-controls="collapseOne" id="sysmem">用户信息
+					<span  class="glyphicon glyphicon-menu-right" aria-hidden="true" ></span></div>
+				<div id="system" class="collapse" aria-expanded="true">
+					<div class="meun-item" href="#user" aria-controls="user" role="tab" data-toggle="tab">基本信息</div>
+					<div class="meun-item" href="#chan" aria-controls="chan" role="tab" data-toggle="tab">修改密码</div>
+				</div>
+				<div class="meun-title" data-toggle="collapse" data-parent="#accordion" href="#memsystem" aria-expanded="true" aria-controls="collapseOne" id="mem">个人账户<span
+						class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></div>
+				<div id="memsystem" class="collapse" aria-expanded="true">
+					<div class="meun-item" href="#sitt" aria-controls="sitt" role="tab" data-toggle="tab">用户信息</div>
+					<div class="meun-item" href="#sour" aria-controls="sour" role="tab" data-toggle="tab">账务信息</div>
+				</div>
+				<div class="meun-title" data-toggle="collapse" data-parent="#accordion" href="#numbercount" aria-expanded="true" aria-controls="collapseOne" id="number">数据统计<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></div>
+				<div id="numbercount" class="collapse" aria-expanded="true">
+					<div class="meun-item" href="#scho" aria-controls="scho" role="tab" data-toggle="tab" id="ganlan">收支概览</div>
+				</div>
+			</div>
+			<!-- 右侧具体内容栏目 -->
+			<div id="rightContent">
+				<a class="toggle-btn" id="nimei">
+					<i class="glyphicon glyphicon-align-justify"></i>
+				</a>
+				<!-- 系统用户管理 -->
+				<div class="tab-content">
+					<!-- 修改密码模块 -->
+					<div role="tabpanel" class="tab-pane soverview active" id="scho">
+							<ol class="breadcrumb">
+							    <li><a>数据统计</a></li>
+							    <li class="active">概览</li>
+							</ol>
+						<div class="data-div">
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="panel panel-default">
+									  <div class="panel-body">
+									   		<div class="container-fluid">
+											  	<div class="row">
+											  		<div class="col-lg-4 col-xs-5">
+											  			<div class="panel panel-default">
+															  <div class="panel-heading" style="font-size: 1.3em;font-weight: bold;background-color: #FFFFFF;">使用情况概览</div>
+															  <div class="zongliang" style="position: relative;font-size: 16px;padding-left: 10px;">注册用户总量:5944515</div>
+															  <div class="panel-body">
+															  	<div class="" id="c2"></div>
+															  </div></div>
+											  		</div>
+											  		<div class="col-lg-5 col-xs-7">
+														<div class="panel panel-default">
+															  <div class="panel-heading" style="font-size: 1.3em;font-weight: bold;background-color: #FFFFFF;">终端使用情况</div>
+															  <div class="panel-body">
+															    	<div id="c1"></div>
+															  </div>
+														</div>
+													
+													</div>
+											  		<div class="col-lg-3 col-xs-4">
+											  			<div class="panel panel-default">
+														  <div class="panel-body">
+														    	<ul class="media-list">
+																  <li class="media">
+																	    <div class="media-left">
+																		      <a href="#">
+																		        <img class="media-object" src="/images/1.png" alt="...">
+																		      </a>
+																		    </div>
+																		    <div class="media-body">
+																		      <h5 class="media-heading" style="font-size: 1.3em;">昨日新增注册用户</h5>
+																		      124345
+																	  </div>
+																</li>
+															</ul>
+														    
+														  </div>
+														</div>
+														<div class="panel panel-default">
+														  <div class="panel-body">
+														    <ul class="media-list">
+																  <li class="media">
+																	    <div class="media-left">
+																		      <a href="#">
+																		        <img class="media-object" src="/images/2.png" alt="...">
+																		      </a>
+																		    </div>
+																		    <div class="media-body">
+																		      <h5 class="media-heading" style="font-size: 1.3em;">昨日新增个人付费用户</h5>
+																		      12434
+																	  </div>
+																</li>
+															</ul>
+														    
+														  </div>
+														</div>
+														<div class="panel panel-default">
+														  <div class="panel-body">
+															    <ul class="media-list">
+																	  <li class="media">
+																		    <div class="media-left">
+																			      <a href="#">
+																			        <img class="media-object" src="/images/3.png" alt="...">
+																			      </a>
+																			    </div>
+																			    <div class="media-body">
+																			      <h5 class="media-heading" style="font-size: 1.3em;">昨日新增企业用户</h5>
+																			      1243
+																		  </div>
+																	</li>
+																</ul>
+															    
+														  </div>
+														</div>
+											  		</div>
+													<div class="col-lg-4 col-xs-4">
+														<div class="panel panel-default">
+															  <div class="panel-heading" style="font-size: 1.3em;font-weight: bold;background-color: #FFFFFF;">使用情况概览</div>
+															  <div class="panel-body">
+															    	<div class="row">
+																    		<ul class="col-xs-7">
+																    				<li style="line-height: 2em;">平台总会议时长</li>
+																    				<li style="line-height: 2em;">平台总会议场数</li>
+																    				<li style="line-height: 2em;">平台最高并发方数</li>
+																    				<li style="line-height: 2em;">平均会议人数</li>
+																    				<li style="line-height: 2em;">平均会议时长</li>
+																    			</ul>
+															    			<ulclass="col-xs-5" style="color: #2ecc71;list-style: none;">
+															    				<li style="line-height: 2em;">323230min</li>
+															    				<li style="line-height: 2em;">3232场</li>
+															    				<li style="line-height: 2em;">1000方</li>
+															    				<li style="line-height: 2em;">6人</li>
+															    				<li style="line-height: 2em;">20min</li>
+															    			</ul>
+															    	</div>
+															  </div>
+														</div>
+													</div>
+													<div class="col-lg-4 col-xs-4">
+														<div class="panel panel-default">
+															  <div class="panel-heading" style="font-size: 1.3em;font-weight: bold;background-color: #FFFFFF;">用户数据详情</div>
+															  <div class="panel-body">
+															  		<div class="row" style="text-align: center;">
+															  			<div class="col-xs-12" style="margin-bottom: 15px;">
+															  				<button type="button" class="btn btn-primary xzinfo"  aria-label="Left Align" href="#xinfo" aria-controls="cinfo" role="tab" data-toggle="tab" aria-expanded="true" style="padding: 15px 25%;background-color: #337ab7;border-color: #2e6da4;">
+																	  			<span class="glyphicon glyphicon-align-left" aria-hidden="true" style="float: left;"></span>新增用户
+																			</button>
+															  			</div>
+															  			<div class="col-xs-12" style="margin-bottom: 15px;">
+															  				<button type="button" class="btn btn-warning hyinfo"  aria-label="Left Align" href="#hinfo" aria-controls="hinfo" role="tab" data-toggle="tab" aria-expanded="true"  style="padding: 15px 25%;">
+																	  			<span class="glyphicon glyphicon-user" aria-hidden="true" style="float: left;"></span>活跃用户
+																			</button>
+																		</div>
+															  			<div class="col-xs-12" style="margin-bottom: 15px;">
+															  				<button type="button" class="btn btn-success ljinfo"  aria-label="Left Align" href="#linfo" aria-controls="linfo" role="tab" data-toggle="tab" aria-expanded="true" style="padding: 15px 25%;">
+																	  			<span class="glyphicon glyphicon-th-list" aria-hidden="true" style="float: left;"></span>累计用户
+																			</button>
+															  			</div>
+															  		</div>
+															  </div>
+														</div>
+													</div>
+											</div>
+											</div>
+									  </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--新增用户-->
+					<div role="tabpanel" class="tab-pane active" id="xinfo">
+							<ol class="breadcrumb">
+							    <li><a>系统用户管理</a></li>
+							    <li><a>统计</a></li>
+							    <li class="active">详细数据</li>
+							</ol>
+						<div class="data-div">
+							<div class="row" style="margin: 15px;">
+								<div class="col-xs-12">
+										<div class="btn-group" role="group" aria-label="...">
+										  <button type="button" class="btn btn-primary xzinfo" aria-label="Left Align" href="#xinfo" aria-controls="xinfo" role="tab" data-toggle="tab" aria-expanded="true" >新增用户数</button>
+										  <button type="button" class="btn btn-default hyinfo" aria-label="Left Align" href="#hinfo" aria-controls="hinfo" role="tab" data-toggle="tab" aria-expanded="true" >活跃用户数</button>
+										  <button type="button" class="btn btn-default ljinfo" aria-label="Left Align" href="#linfo" aria-controls="linfo" role="tab" data-toggle="tab" aria-expanded="true" >累计用户数</button>
+										</div>
+								  </div>
+							</div>
+								  <div class="row">
+									  <div class="col-xs-2">
+											<select class="form-control" style="margin-left: 30px;">
+										      <option>按日</option>
+										      <option>按月</option>
+										      <option>按年</option>
+										  </select>
+									  </div>
+									  <div class="col-xs-8">
+									  	<div style="padding: 0 15px;">
+										    <input size="16" type="date"  class="form_datetime form-control" value="12-02-2012" style="width: 20%;float: left;">
+											<span style="float: left;">&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;&nbsp;</span>
+											<input size="16" type="date" class="form_datetime form-control" value="12-02-2017" style="width: 20%;float: left;">
+										</div>
+										 <div class="btn btn-big btn-primary" style="margin-left: 15px;">查询</div>
+										  
+									  </div>
+								  </div>
+								  
+								  <div class="container-fluid">
+								  	<div id="c3">
+								  		
+								  	</div>
+								  </div>
+								   <div class="container-fluid">
+									   <div class="col-xs-12">
+									 		<p><button class="btn btn-sm btn-success">导出</button></p>
+									 	</div>
+								 	</div>
+								  <div class="container-fluid">
+							  		<div class="col-xs-12">
+							  			<div class="panel panel-default ">
+											  <!-- Default panel contents -->
+											  <div class="panel-heading">数据列表</div>
+											
+											  <!-- Table -->
+											  <table class="table">
+														<tbody><tr>
+														    <th>日期</th>
+														    <th>注册新增</th>
+														    <th>个人付费新增</th>
+														    <th>企业新增</th>
+														  </tr>
+														  <tr>
+														  	<td>2017-08-18</td>
+														    <td>26</td>
+														    <td>13</td>
+														    <td>18</td>
+														  </tr>	
+														  <tr>
+														  	<td>2017-08-18</td>
+														    <td>26</td>
+														    <td>13</td>
+														    <td>18</td>
+														  </tr>																	    
+
+											  </tbody></table>
+										</div>
+										
+							  		</div>
+								</div>
+								</div>
+								<footer class="footer">
+									<ul class="pagination">
+										<li>
+											<select>
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+												<option>6</option>
+												<option>7</option>
+												<option>8</option>
+												<option>9</option>
+												<option>10</option>
+											</select>
+											页
+										</li>
+										<li class="gray">
+											共20页
+										</li>
+										<li>
+											<i class="glyphicon glyphicon-menu-left">
+												</i>
+										</li>
+										<li>
+											<i class="glyphicon glyphicon-menu-right">
+												</i>
+										</li>
+									</ul>
+								</footer>
+						</div>
+					<!--活跃用户-->
+					<div role="tabpanel" class="tab-pane active" id="hinfo">
+							<ol class="breadcrumb" >
+							    <li><a href="#">系统用户管理</a></li>
+							    <li><a href="#">统计</a></li>
+							    <li class="active">详细数据</li>
+							</ol>
+						<div class="data-div">
+							<div class="row" style="margin: 15px;">
+								<div class="col-xs-12">
+										<div class="btn-group" role="group" aria-label="...">
+										  <button type="button" class="btn btn-default xzinfo" aria-label="Left Align" href="#xinfo" aria-controls="xinfo" role="tab" data-toggle="tab" aria-expanded="true" >新增用户数</button>
+										  <button type="button" class="btn btn-primary hyinfo" aria-label="Left Align" href="#hinfo" aria-controls="hinfo" role="tab" data-toggle="tab" aria-expanded="true" >活跃用户数</button>
+										  <button type="button" class="btn btn-default ljinfo" aria-label="Left Align" href="#linfo" aria-controls="linfo" role="tab" data-toggle="tab" aria-expanded="true" >累计用户数</button>
+										</div>
+								  </div>
+							</div>
+								  <div class="row">
+									  <div class="col-xs-2">
+											<select class="form-control" style="margin-left: 30px;">
+										      <option>按日</option>
+										      <option>按月</option>
+										      <option>按年</option>
+										  </select>
+									  </div>
+									  <div class="col-xs-8">
+									  	<div style="padding: 0 15px;">
+										    <input size="16" type="date"  class="form_datetime form-control" value="12-02-2012" style="width: 20%;float: left;">
+											<span style="float: left;">&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;&nbsp;</span>
+											<input size="16" type="date" class="form_datetime form-control" value="12-02-2017" style="width: 20%;float: left;">
+										</div>
+										 <div class="btn btn-big btn-primary" style="margin-left: 15px;">查询</div>
+										  
+									  </div>
+								  </div>
+								  
+								  <div class="container-fluid">
+								  	<div id="c4">
+								  		
+								  	</div>
+								  </div>
+								 <div class="container-fluid">
+								 	<div class="col-xs-12">
+								 		<p><button class="btn btn-sm btn-success">导出</button></p>
+								 	</div>
+								 </div> 
+								  <div class="container-fluid">
+							  		<div class="col-xs-12">
+							  			<div class="panel panel-default ">
+											  <!-- Default panel contents -->
+											  <div class="panel-heading">数据列表</div>
+											
+											  <!-- Table -->
+											  <table class="table">
+														<tbody><tr>
+														    <th>日期</th>
+														    <th>用户数</th>
+														  </tr>
+														  <tr>
+														  	<td>2017-08-18</td>
+														    <td>26</td>
+														  </tr>	
+														  <tr>
+														  	<td>2017-08-18</td>
+														    <td>26</td>
+														  </tr>																	    
+											  </tbody></table>
+										</div>
+										
+							  		</div>
+								</div>
+								</div>
+								<footer class="footer">
+									<ul class="pagination">
+										<li>
+											<select>
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+												<option>6</option>
+												<option>7</option>
+												<option>8</option>
+												<option>9</option>
+												<option>10</option>
+											</select>
+											页
+										</li>
+										<li class="gray">
+											共20页
+										</li>
+										<li>
+											<i class="glyphicon glyphicon-menu-left">
+												</i>
+										</li>
+										<li>
+											<i class="glyphicon glyphicon-menu-right">
+												</i>
+										</li>
+									</ul>
+								</footer>
+						</div>
+					<!--累计用户-->
+					<div role="tabpanel" class="tab-pane active" id="linfo">
+							<ol class="breadcrumb" >
+							    <li><a href="#">系统用户管理</a></li>
+							    <li><a href="#">统计</a></li>
+							    <li class="active">详细数据</li>
+							</ol>
+						<div class="data-div">
+							<div class="row" style="margin: 15px;">
+								<div class="col-xs-12">
+										<div class="btn-group" role="group" aria-label="...">
+										  <button type="button" class="btn btn-default xzinfo" aria-label="Left Align" href="#xinfo" aria-controls="xinfo" role="tab" data-toggle="tab" aria-expanded="true" >新增用户数</button>
+										  <button type="button" class="btn btn-default hyinfo" aria-label="Left Align" href="#hinfo" aria-controls="hinfo" role="tab" data-toggle="tab" aria-expanded="true" >活跃用户数</button>
+										  <button type="button" class="btn btn-primary ljinfo" aria-label="Left Align" href="#linfo" aria-controls="linfo" role="tab" data-toggle="tab" aria-expanded="true" >累计用户数</button>
+										</div>
+								  </div>
+							</div>
+								  <div class="row">
+									  <div class="col-xs-2">
+											<select class="form-control" style="margin-left: 30px;">
+										      <option>按日</option>
+										      <option>按月</option>
+										      <option>按年</option>
+										  </select>
+									  </div>
+									  <div class="col-xs-8">
+									  	<div style="padding: 0 15px;">
+										    <input size="16" type="date"  class="form_datetime form-control" value="12-02-2012" style="width: 20%;float: left;">
+											<span style="float: left;">&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;&nbsp;</span>
+											<input size="16" type="date" class="form_datetime form-control" value="12-02-2017" style="width: 20%;float: left;">
+										</div>
+										 <div class="btn btn-big btn-primary" style="margin-left: 15px;">查询</div>
+										  
+									  </div>
+								  </div>
+								  
+								  <div class="container-fluid">
+								  	<div id="c5">
+								  		
+								  	</div>
+								  </div>
+								  <div class="container-fluid">
+									  <div class="col-xs-12">
+									 		<p><button class="btn btn-sm btn-success">导出</button></p>
+									 </div>
+								 </div>
+								  <div class="container-fluid">
+							  		<div class="col-xs-12">
+							  			<div class="panel panel-default ">
+											  <!-- Default panel contents -->
+											  <div class="panel-heading">数据列表</div>
+											
+											  <!-- Table -->
+											  <table class="table">
+														<tbody><tr>
+														    <th>日期</th>
+														    <th>注册累计用户</th>
+														    <th>个人付费累计用户</th>
+														    <th>企业累计用户</th>
+														  </tr>
+														  <tr>
+														  	<td>2017-08-18</td>
+														    <td>26</td>
+														    <td>13</td>
+														    <td>18</td>
+														  </tr>	
+														  <tr>
+														  	<td>2017-08-18</td>
+														    <td>26</td>
+														    <td>13</td>
+														    <td>18</td>
+														  </tr>																	    
+
+											  </tbody></table>
+										</div>
+										
+							  		</div>
+								</div>
+								</div>
+								<footer class="footer">
+									<ul class="pagination">
+										<li>
+											<select>
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+												<option>6</option>
+												<option>7</option>
+												<option>8</option>
+												<option>9</option>
+												<option>10</option>
+											</select>
+											页
+										</li>
+										<li class="gray">
+											共20页
+										</li>
+										<li>
+											<i class="glyphicon glyphicon-menu-left">
+												</i>
+										</li>
+										<li>
+											<i class="glyphicon glyphicon-menu-right">
+												</i>
+										</li>
+									</ul>
+								</footer>
+						</div>
+					
+						
+					<!--用户信息模块-->
+					<div role="tabpanel" class="tab-pane" id="sitt">
+						<ol class="breadcrumb">
+						    <li><a>用户管理</a></li>
+						    <li class="active">用户信息</li>
+						</ol>
+						<div class="check-div form-inline">
+							
+							<div class="col-sm-5">
+								<input type="text" class=" form-control input-sm " placeholder="输入文字搜索">
+								<button class="btn btn-warning btn-xs">查 询 </button>
+								</div>
+								<div class="col-sm-3">
+								<label for="paixu  col-xs-offset-1">类型:&nbsp;</label>
+								<select class=" form-control">
+									<option>请选择类型</option>
+									<option>个人免费</option>
+									<option>个人付费</option>
+									<option>企业付费</option>
+								</select>
+								</div>
+								<div class="col-sm-4">
+								<label for="paixu">状态:&nbsp;</label>
+								<select class=" form-control">
+									<option>全部</option>
+									<option>正常</option>
+									<option>封禁</option>
+								</select>
+								</div>
+						</div>
+						<div class="data-div">
+							<div class="row tableHeader">
+								<div class="col-xs-1 ">
+									ID
+								</div>
+								<div class="col-xs-1 ">
+									用户名
+								</div>
+								<div class="col-xs-1 ">
+									类型
+								</div>
+								<div class="col-xs-1">
+									账户
+								</div>
+								<div class="col-xs-1">
+									状态
+								</div>
+								<div class="col-xs-1">
+									参与会议场数
+								</div>
+								<div class="col-xs-2">
+									最后使用时间
+								</div>
+								<div class="col-xs-3">
+									操作
+								</div>
+							</div>
+							<div class="tablebody">
+								<div class="row">
+									<div class="col-xs-1 ">
+										1
+									</div>
+									<div class="col-xs-1 ">
+										张三
+									</div>
+									<div class="col-xs-1">
+										个人免费
+									</div>
+									<div class="col-xs-1">
+										13291876534
+									</div>
+									<div class="col-xs-1">
+										● 正常
+									</div>
+	
+									<div class="col-xs-1">
+										12
+									</div>
+									<div class="col-xs-2">
+										- 2015-09-28 08:50:08
+									</div>
+									<div class="col-xs-3">
+										<button class="btn btn-xs btn-success " data-toggle="modal" data-target="#seepeople">查看</button>
+										<button class="btn btn-xs btn-success " data-toggle="modal" data-target>配置</button>
+										<button class="btn btn-xs btn-danger " data-toggle="modal" data-target="#disableUser">禁用</button>
+										<button class="btn btn-xs btn-danger " data-toggle="modal" data-target="#resetUser">重置</button>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-1 ">
+										2
+									</div>
+									<div class="col-xs-1 ">
+										张三
+									</div>
+									<div class="col-xs-1">
+										个人免费
+									</div>
+									<div class="col-xs-1">
+										13291876534
+									</div>
+									<div class="col-xs-1">
+										无
+									</div>
+									<div class="col-xs-1">
+										12
+									</div>
+						
+									<div class="col-xs-2">
+										- 2015-09-28 08:50:08
+									</div>
+									<div class="col-xs-3">
+										<button class="btn btn-xs btn-success " data-toggle="modal" data-target="#seepeople">查看</button>
+										<button class="btn btn-xs btn-success " data-toggle="modal" data-target>配置</button>
+										<button class="btn btn-xs btn-danger " data-toggle="modal" data-target="#disableUser">解禁</button>
+										<button class="btn btn-xs btn-danger " data-toggle="modal" data-target="#resetUser">重置</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--页码块-->
+						<footer class="footer">
+							<ul class="pagination">
+								<li>
+									<select>
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+										<option>6</option>
+										<option>7</option>
+										<option>8</option>
+										<option>9</option>
+										<option>10</option>
+									</select>
+									页
+								</li>
+								<li class="gray">
+									共20页
+								</li>
+								<li>
+									<i class="glyphicon glyphicon-menu-left">
+										</i>
+								</li>
+								<li>
+									<i class="glyphicon glyphicon-menu-right">
+										</i>
+								</li>
+							</ul>
+						</footer>
+						<!--弹出添加用户窗口-->
+						<div class="modal fade" id="addSchool" role="dialog" aria-labelledby="gridSystemModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h5 class="modal-title" id="gridSystemModalLabel">添加学校</h5>
+									</div>
+									<div class="modal-body">
+										<div class="container-fluid">
+											<form class="form-horizontal">
+												<div class="form-group ">
+													<label for="sName" class="col-xs-3 control-label">学校名称：</label>
+													<div class="col-xs-8 ">
+														<input type="email" class="form-control input-sm" id="sName" placeholder="">
+													</div>
+												</div>
+												<div class="form-group ">
+													<label for="sName" class="col-xs-3 control-label">经度：</label>
+													<div class="col-xs-8 ">
+														<input type="email" class="form-control input-sm" id="sName" placeholder="">
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="sLink" class="col-xs-3 control-label">纬度：</label>
+													<div class="col-xs-8 ">
+														<input type="" class="form-control input-sm" id="sLink" placeholder="">
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="sOrd" class="col-xs-3 control-label">简称：</label>
+													<div class="col-xs-8">
+														<input type="" class="form-control input-sm" id="sOrd" placeholder="">
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-xs btn-default" data-dismiss="modal">取 消</button>
+										<button type="button" class="btn btn-xs btn-primary">保 存</button>
+									</div>
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+						</div>
+						<!--查看用户详情-->
+						<div class="modal fade" id="seepeople" role="dialog" aria-labelledby="gridSystemModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h5 class="modal-title" id="gridSystemModalLabel">用户信息</h5>
+									</div>
+									<div class="modal-body">
+										<div class="container-fluid">
+												<div class="form-horizontal col-xs-6">
+													<h6>基础信息</h6>
+													<p>用户名：张三</p>
+													<p>用户类型：个人免费</p>
+													<p>手机：13291867654</p>
+													<p>邮箱：2121@qq.com</p>
+													<p>公司：xxxx</p>
+													<p>私有套餐：无</p>
+													<p>最后使用时间：2015-09-28 08:50:08</p>
+													<p>状态：正常</p>
+												</div>
+													<div class="form-horizontal col-xs-6">
+														<h6>数据信息</h6>
+													<p>会议场数：34</p>
+													<p>会议室数量：1</p>
+													<p>并发方数：100</p>
+													<p>网盘容量（暂无）：1G</p>
+												</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-xs btn-default" data-dismiss="modal">取 消</button>
+										<button type="button" class="btn btn-xs btn-primary">保 存</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--禁用用户警告窗口-->
+						<div class="modal fade" id="disableUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h5 class="modal-title" id="gridSystemModalLabel">提示</h5>
+									</div>
+									<div class="modal-body">
+										<div class="container-fluid">
+											是否禁用该用户
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-xs btn-default" data-dismiss="modal">取 消</button>
+										<button type="button" class="btn btn-xs btn-danger">禁 用</button>
+									</div>
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+						</div>
+							<!--重置用户密码警告窗口-->
+						<div class="modal fade" id="resetUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h5 class="modal-title" id="gridSystemModalLabel">提示</h5>
+									</div>
+									<div class="modal-body">
+										<div class="container-fluid">
+											是否重置密码？重置密码为000000
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-xs btn-default" data-dismiss="modal">取 消</button>
+										<button type="button" class="btn btn-xs btn-danger">保 存</button>
+									</div>
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+						</div>
+						<!-- /.modal -->
+					</div>
+					<!--用户信息详情模块-->
+					<div role="tabpanel" class="tab-pane" id="sitDetail">
+						<div class="check-div form-inline">
+							<span href="#sitt" aria-controls="sitt" role="tab" data-toggle="tab" style="cursor: pointer;"><span class="glyphicon glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;返回上一页</span>
+						</div>
+						<div class="data-div">
+							<div class="row tableHeader">
+								<div class="col-xs-6 ">
+									座位编码
+								</div>
+								<div class="col-xs-6 ">
+									座位名称
+								</div>
+
+							</div>
+							<div class="tablebody">
+
+								<div class="row">
+									<div class="col-xs-6 ">
+										sad2345fas345533
+									</div>
+									<div class="col-xs-6">
+										王座
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+						<!--页码块-->
+						<footer class="footer">
+							<ul class="pagination">
+								<li>
+									<select>
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+										<option>6</option>
+										<option>7</option>
+										<option>8</option>
+										<option>9</option>
+										<option>10</option>
+									</select>
+									页
+								</li>
+								<li class="gray">
+									共20页
+								</li>
+								<li>
+									<i class="glyphicon glyphicon-menu-left">
+										</i>
+								</li>
+								<li>
+									<i class="glyphicon glyphicon-menu-right">
+										</i>
+								</li>
+							</ul>
+						</footer>
+
+					</div>
+		
+
+		<script src="/js/index.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/tu.js"></script>
+		<script type="text/javascript">
+			$("#ganlan").click(function(){
+				$("#scho").css("visibility","visible");				
+			})
+			$(".xzinfo").click(function(){
+				$("#xinfo").css("visibility","visible");				
+			})
+			$(".hyinfo").click(function(){
+				$("#hinfo").css("visibility","visible");				
+			})
+			$(".ljinfo").click(function(){
+				$("#linfo").css("visibility","visible");				
+			})
+		/*	var info=["xzinfo","hyinfo",'ljinfo'];
+			var aaa=["xinfo","hinfo",'linfo'];
+			for(var i=1;i<info.length;i++){
+			$("."+info[i]).click(function(){
+				$(".xzinfo").parent().children("button").removeClass("btn-primary");
+				$(this).addClass("btn-primary");
+				$("[id$='info']").css("visibility","hidden");
+				console.log(aaa[i])
+				$("#"+aaa[i]).css("visibility","visible");
+			})
+			}*/
+		</script>
+	</body>
+</html>

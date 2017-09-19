@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 @Configuration
 @ConditionalOnClass({ EnableTransactionManagement.class, EntityManager.class })
 @AutoConfigureAfter({ DatabaseConfig.class })
-@MapperScan(basePackages = {"cn.mimik.finance.dao"})
+@MapperScan(basePackages = "cn.mimik.finance.mapper")
 public class MybatisConfiguration {
 
     @Resource(name = "dataSource")

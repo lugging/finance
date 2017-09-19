@@ -1,6 +1,5 @@
 package cn.mimik.finance.domain;
 
-import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -8,9 +7,11 @@ import lombok.Data;
  */
 
 @Data
-@Builder
 public class UserPo {
+
+    public int id;
 
     public String name;
 
+    public String address;
 }
